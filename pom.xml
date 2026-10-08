@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>co.edu.etitc</groupId>
+  <artifactId>grigora</artifactId>
+  <version>1.0</version>
+  <!-- "war" = aplicación web empaquetada para desplegar en Tomcat (carpeta webapps) -->
+  <packaging>war</packaging>
+  <name>Grigora</name>
+  <description>Navegación interactiva para llegar a los salones del campus</description>
+
+  <!-- Repositorio del proyecto en GitHub -->
+  <url>https://github.com/LuisRosero482/Grigora</url>
+  <scm>
+    <url>https://github.com/LuisRosero482/Grigora</url>
+    <connection>scm:git:https://github.com/LuisRosero482/Grigora.git</connection>
+    <developerConnection>scm:git:https://github.com/LuisRosero482/Grigora.git</developerConnection>
+  </scm>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.release>11</maven.compiler.release>
+  </properties>
+
+  <dependencies>
+    <!-- API de Servlets 4.0 (Tomcat 9). "provided": la aporta Tomcat, no se incluye en el .war -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <!-- El .war se llamará grigora.war y se publicará en http://localhost:8080/grigora/ -->
+    <finalName>grigora</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.4.0</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>

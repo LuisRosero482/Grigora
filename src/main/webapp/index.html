@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grigora · Instituto Técnico Central</title>
+<link rel="stylesheet" href="styles.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+
+<header class="hero">
+  <nav class="menu">
+    <strong>Grigora</strong>
+    <a href="#idea">La idea</a>
+    <a href="#funciona">Cómo funciona</a>
+  </nav>
+  <h1>Grigora</h1>
+  <p>Grigora es un proyecto de navegación interactiva pensado para la ETITC como un Waze, pero para llegar caminando desde cualquier punto del campus hasta el salón correcto.</p>
+</header>
+
+<main id="idea" class="grid">
+
+  <article class="card destacado reveal">
+    <h2>¿Qué es Grigora?</h2>
+    <p>Los estudiantes nuevos del Instituto Técnico Central pierden minutos de clase buscando un salón entre bloques, pisos y pasillos parecidos. Grigora es una aplicación que muestra el camino más corto a pie hasta el salón que necesitas, en tiempo real.</p>
+  </article>
+
+  <article class="card reveal" id="funciona">
+    <h2>1. Buscas tu salón</h2>
+    <p>Escribes el código del salón (por ejemplo "B204") o el nombre de la clase, y Grigora lo ubica dentro del mapa del campus.</p>
+  </article>
+
+  <article class="card reveal">
+    <h2>2. Trazamos la ruta</h2>
+    <p>La app calcula el camino más corto desde tu ubicación actual, teniendo en cuenta escaleras, puentes y accesos entre bloques.</p>
+  </article>
+
+  <article class="card reveal">
+    <h2>3. Llegas a tiempo</h2>
+    <p>Sigues el punto en el mapa mientras caminas, con el tiempo estimado de llegada, igual que en una app de navegación vehicular.</p>
+  </article>
+
+  <article class="card reveal">
+    <h2>¿Para quién es?</h2>
+    <p>Pensada sobre todo para estudiantes de primer semestre y visitantes del Instituto Técnico Central, que aún no conocen bien la distribución de los bloques.</p>
+  </article>
+
+</main>
+
+<section id="buscador" class="buscador reveal">
+  <h2>Busca tu salón</h2>
+  <div class="buscador__form">
+    <input type="text" id="input-salon" placeholder="Escribe un código, por ejemplo B204">
+    <button id="btn-buscar">Buscar</button>
+  </div>
+  <p id="resultado">Escribe un código de salón y presiona Buscar.</p>
+
+  <div id="lista-salones" class="grid grid--salones"></div>
+</section>
+
+<section id="registro" class="buscador reveal">
+  <h2>¿No aparece tu salón? Regístralo</h2>
+  <!-- Semana 8: el formulario se envía por POST al servlet RegistroSalonServlet (/registrar-salon) -->
+  <form id="form-nuevo-salon" class="registro__form" action="registrar-salon" method="post" accept-charset="UTF-8">
+    <input type="text" id="nuevo-codigo" name="codigo" placeholder="Código, por ejemplo A105" maxlength="4" required>
+    <input type="text" id="nuevo-nombre" name="nombre" placeholder="Nombre del salón" maxlength="60" required>
+    <select id="nuevo-bloque" name="bloque" required>
+      <option value="" disabled selected>Bloque</option>
+      <option value="Bloque A">Bloque A</option>
+      <option value="Bloque B">Bloque B</option>
+      <option value="Bloque C">Bloque C</option>
+      <option value="Bloque E">Bloque E</option>
+    </select>
+    <input type="number" id="nuevo-piso" name="piso" placeholder="Piso" min="1" max="10" required>
+    <input type="number" id="nuevo-minutos" name="minutos" placeholder="Minutos caminando" min="1" max="60" required>
+    <button type="submit">Agregar salón</button>
+  </form>
+  <p id="mensaje-nuevo-salon">Completa los datos y presiona "Agregar salón": el servidor lo valida, lo registra y aparecerá en el listado y en el mapa.</p>
+</section>
+
+<section id="mapa" class="mapa reveal">
+  <h2>Mapa del campus</h2>
+
+  <div class="mapa__wrap">
+    <svg id="mapa-svg" viewBox="0 0 600 400" class="mapa-svg">
+      <!-- Bloques del campus -->
+      <rect class="bloque" x="40" y="40" width="140" height="100" rx="8"/>
+      <text class="bloque-label" x="60" y="30">BLOQUE A</text>
+
+      <rect class="bloque" x="380" y="30" width="150" height="110" rx="8"/>
+      <text class="bloque-label" x="400" y="20">BLOQUE B</text>
+
+      <rect class="bloque" x="60" y="250" width="150" height="110" rx="8"/>
+      <text class="bloque-label" x="80" y="240">BLOQUE C</text>
+
+      <rect class="bloque" x="380" y="250" width="150" height="110" rx="8"/>
+      <text class="bloque-label" x="400" y="240">BLOQUE E</text>
+
+      <!-- Punto de partida fijo: entrada principal -->
+      <circle id="pin-origen" class="pin-origen" cx="300" cy="180" r="8"/>
+      <text class="pin-label" x="300" y="205" text-anchor="middle">Entrada</text>
+
+      <!-- La ruta y el pin de destino los dibuja app.js -->
+      <path id="ruta" class="ruta" d=""></path>
+      <circle id="pin-destino-pulso" class="pin-destino-pulso" cx="0" cy="0" r="0"></circle>
+      <circle id="pin-destino" class="pin-destino" cx="0" cy="0" r="0"></circle>
+      <text id="pin-destino-label" class="pin-label pin-label--destino" x="0" y="0" text-anchor="middle"></text>
+    </svg>
+  </div>
+
+  <p id="mapa-info" class="mapa-info">Busca un salón para ver la ruta trazada en el mapa.</p>
+</section>
+
+<footer>Instituto Técnico Central · Proyecto Grigora</footer>
+
+</body>
+</html>

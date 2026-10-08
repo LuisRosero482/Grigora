@@ -1,0 +1,382 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap');
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(30deg, #0a5225, #c7bebe);
+  background-size: 200% 200%;
+  color: #101312;
+  animation: fondoMovimiento 18s ease infinite;
+}
+
+@keyframes fondoMovimiento {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* ===== Hero ===== */
+.hero {
+  background: linear-gradient(50deg, #095a28, #dad5d5);
+  color: white;
+  padding: 32px 10%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 6px 20px #00000022;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.menu strong {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+}
+
+.menu a {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  opacity: 0.85;
+  margin-left: 22px;
+  transition: opacity 0.2s ease;
+}
+
+.menu a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: white;
+  transition: width 0.25s ease;
+}
+
+.menu a:hover { opacity: 1; }
+.menu a:hover::after { width: 100%; }
+
+.hero h1 {
+  font-family: 'Poppins', Arial, sans-serif;
+  max-width: 20ch;
+  line-height: 1.15;
+  opacity: 0;
+  animation: apareceArriba 0.7s ease forwards;
+  animation-delay: 0.1s;
+}
+
+.hero p {
+  max-width: 55ch;
+  color: #cfe0d6;
+  opacity: 0;
+  animation: apareceArriba 0.7s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes apareceArriba {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Grid / Tarjetas ===== */
+.grid {
+  width: min(1100px, 92%);
+  margin: 30px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  padding-bottom: 20px;
+}
+
+.card {
+  background: rgb(207, 235, 214);
+  border: 1px solid #dbe3de;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 4px 14px #00000018;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px #00000022;
+  border-color: #236b45;
+}
+
+.card h2 {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 1.1rem;
+  margin: 0 0 10px;
+  color: #0d3324;
+}
+
+.card p {
+  margin: 0;
+  color: #33403a;
+}
+
+.destacado {
+  border: 2px solid #236b45;
+  grid-column: 1 / -1;
+}
+
+.destacado:hover {
+  box-shadow: 0 14px 30px #0a522533;
+}
+
+.destacado h2 { font-size: 1.3rem; }
+
+.card--clic { cursor: pointer; }
+
+.card--clic:hover {
+  transform: translateY(-6px) scale(1.01);
+}
+
+/* Animación de aparición al hacer scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Buscador ===== */
+.buscador {
+  width: min(1100px, 92%);
+  margin: 10px auto 0;
+}
+
+.buscador h2 {
+  font-family: 'Poppins', Arial, sans-serif;
+  color: #0d3324;
+  margin-bottom: 14px;
+}
+
+.buscador__form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.buscador__form input {
+  flex: 1;
+  padding: 12px 14px;
+  border: 1px solid #cbd6cf;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.buscador__form input:focus {
+  outline: none;
+  border-color: #236b45;
+  box-shadow: 0 0 0 3px #236b4533;
+}
+
+.buscador__form button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #236b45;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.buscador__form button:hover {
+  background: #0a5225;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px #0a522544;
+}
+
+.buscador__form button:active {
+  transform: translateY(0);
+}
+
+#resultado {
+  color: #33403a;
+  margin-bottom: 20px;
+  transition: color 0.2s ease;
+}
+
+/* ===== Mapa ===== */
+.mapa {
+  width: min(1100px, 92%);
+  margin: 40px auto;
+}
+
+.mapa h2 {
+  font-family: 'Poppins', Arial, sans-serif;
+  color: #0d3324;
+  margin-bottom: 14px;
+}
+
+.mapa__wrap {
+  background: #ecf5ef;
+  border: 1px solid #cbd6cf;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 4px 14px #00000012;
+  transition: box-shadow 0.3s ease;
+}
+
+.mapa__wrap:hover {
+  box-shadow: 0 10px 26px #00000020;
+}
+
+.mapa-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.bloque {
+  fill: #ffffff;
+  stroke: #b9cabf;
+  stroke-width: 1.5;
+  transition: fill 0.2s ease, stroke 0.2s ease;
+}
+
+.bloque:hover {
+  fill: #e2f2e7;
+  stroke: #236b45;
+}
+
+.bloque-label {
+  fill: #4c5751;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+  pointer-events: none;
+}
+
+.pin-origen {
+  fill: #101312;
+}
+
+.pin-destino {
+  fill: #236b45;
+  transition: cx 0.3s ease, cy 0.3s ease;
+}
+
+.pin-destino-pulso {
+  fill: none;
+  stroke: #236b45;
+  stroke-width: 2;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.pin-destino-pulso.activo {
+  animation: pulso 1.8s ease-out infinite;
+}
+
+@keyframes pulso {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  100% { transform: scale(2.8); opacity: 0; }
+}
+
+.pin-label {
+  fill: #101312;
+  font-size: 12px;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.pin-label--destino {
+  fill: #0a5225;
+}
+
+.ruta {
+  fill: none;
+  stroke: #236b45;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 8 6;
+}
+
+.ruta.marchando {
+  animation: marchaRuta 1.1s linear infinite;
+}
+
+@keyframes marchaRuta {
+  to { stroke-dashoffset: -28; }
+}
+
+.mapa-info {
+  margin-top: 12px;
+  color: #33403a;
+  font-size: 0.92rem;
+  transition: color 0.2s ease;
+}
+
+/* ===== Footer ===== */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #4c5751;
+}
+
+/* ===== Formulario de registro (Semana 8) ===== */
+.registro__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.registro__form input,
+.registro__form select {
+  flex: 1 1 180px;
+  padding: 12px 14px;
+  border: 1px solid #cbd6cf;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+}
+
+.registro__form input:focus,
+.registro__form select:focus {
+  outline: none;
+  border-color: #236b45;
+  box-shadow: 0 0 0 3px #236b4533;
+}
+
+.registro__form button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #236b45;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.registro__form button:hover { background: #0a5225; transform: translateY(-2px); }
+
+/* Páginas generadas por los servlets */
+.card ul { margin: 0 0 12px; padding-left: 20px; }
+.card a { color: #0a5225; font-weight: bold; }
