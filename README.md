@@ -39,3 +39,6 @@ git push
 git commit --allow-empty -m "semana08-servlets"   # o haz el commit con los cambios de la semana 8 por separado
 git push
 ```
+
+   ## Entrega semana 7
+   Despliegue web: pom.xml (war), WEB-INF/web.xml y ConsultaSalonServlet en /consulta.
