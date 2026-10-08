@@ -43,3 +43,7 @@ git push
   
    ## Entrega semana 7
    Despliegue web: pom.xml (war), WEB-INF/web.xml y ConsultaSalonServlet en /consulta.
+
+   
+   ## Entrega semana 8
+   Servlets: formulario de registro en index.html conectado a RegistroSalonServlet (/registrar-salon) con validaciones.
